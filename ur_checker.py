@@ -32,11 +32,8 @@ def fetch_vacant_properties():
     return vacant
 
 def main():
-    props = fetch_vacant_properties()
-    if not props:
-        print("空室なし")
-    for title, url in props:
-        send_line_notify(f"【新着空室】\n{title}\n{url}")
+    # テスト通知
+    send_line_notify("✅ テスト通知です！GitHub Actions 経由でLINEへ送信成功！")
 
 if __name__ == '__main__':
     main()
