@@ -30,10 +30,13 @@ def fetch_vacant_properties():
                 full_url = href if href.startswith('http') else f"https://www.ur-net.go.jp{href}"
                 vacant.append((f"{ward}：{title}", full_url))
     return vacant
-
+    
 def main():
-    # テスト通知
-    send_line_notify("✅ テスト通知です！GitHub Actions 経由でLINEへ送信成功！")
+    props = fetch_vacant_properties()
+    if not props:
+        print("空室なし")
+    for title, url in props:
+        send_line_notify(f"【新着空室】\n{title}\n{url}")
 
 if __name__ == '__main__':
     main()
